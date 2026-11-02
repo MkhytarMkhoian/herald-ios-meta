@@ -14,7 +14,7 @@ In Xcode, File → Add Package Dependencies, and add both packages:
 - `https://github.com/MkhytarMkhoian/herald-ios`, for `HeraldCore`;
 - `https://github.com/MkhytarMkhoian/herald-ios-meta`, for `HeraldMeta`.
 
-It works with Meta's SDK 18, and needs iOS 15 or newer. All Herald for iOS packages share one
+It works with Meta's SDK 19, and needs iOS 15 or newer. All Herald for iOS packages share one
 version, so use the same one for `herald-ios`.
 
 ## Set up
@@ -27,6 +27,10 @@ install collects nothing by itself before consent:
 <key>FacebookAutoLogAppEventsEnabled</key>
 <false/>
 <key>FacebookAdvertiserIDCollectionEnabled</key>
+<false/>
+<key>FBSDKAutoLogMetaDataEnabled</key>
+<false/>
+<key>FBSDKAutoLogProductImprovementEnabled</key>
 <false/>
 ```
 
@@ -54,10 +58,11 @@ let provider = HeraldProvider(
 | a `MetaPurchaseEvent` | `logPurchase(amount:currency:parameters:)`, sent as `fb_mobile_purchase` |
 | `identify` / `reset` | `AppEvents.shared.userID = userId` / `nil` |
 | `flush` | `AppEvents.shared.flush()` |
-| `setEnabled` | `isAutoLogAppEventsEnabled` and `isAdvertiserIDCollectionEnabled` |
+| `setEnabled` | `isAutoLogAppEventsEnabled`, `isAdvertiserIDCollectionEnabled`, `isMetaDataCollectionEnabled` and `isAutoLogProductImprovementEnabled` |
 
 **Consent.** `setEnabled` turns Meta's own collection on or off: the events it logs by itself, such
-as installs, and the advertiser id. It doesn't stop the events your app logs. Call it with the
+as installs, the advertiser id, the screen title and app link URL it adds to events, and its
+product improvement data. It doesn't stop the events your app logs. Call it with the
 stored answer on every launch.
 
 ## Your conversions

@@ -3,11 +3,13 @@ import HeraldCore
 /// Meta's start, sign-in and consent.
 ///
 /// `setEnabled` turns Meta's own collection on or off: the events it logs by itself, such as
-/// installs, and the advertiser id. It doesn't stop the events your app logs.
+/// installs, the advertiser id, the screen title and app link URL it adds to events, and its
+/// product improvement data. It doesn't stop the events your app logs.
 ///
 /// Meta's SDK starts before any Herald code runs, so a fresh install collects nothing by itself
-/// only if `Info.plist` turns its automatic collection off: `FacebookAutoLogAppEventsEnabled` and
-/// `FacebookAdvertiserIDCollectionEnabled` set to `NO`. `setEnabled` then turns them on or off.
+/// only if `Info.plist` turns its automatic collection off: `FacebookAutoLogAppEventsEnabled`,
+/// `FacebookAdvertiserIDCollectionEnabled`, `FBSDKAutoLogMetaDataEnabled` and
+/// `FBSDKAutoLogProductImprovementEnabled` set to `NO`. `setEnabled` then turns them on or off.
 /// Call it with the stored answer on every launch.
 public struct MetaAnalyticsService: AnalyticsLifecycleService, IdentifiableUserService,
     ConsentService

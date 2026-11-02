@@ -1,3 +1,4 @@
+import FBSDKCoreKit
 import HeraldCore
 import Testing
 
@@ -13,6 +14,20 @@ import Testing
         service.setEnabled(false)
 
         #expect(meta.calls == ["collection true", "collection false"])
+    }
+
+    @Test func liveSDKSwitchesEveryAutomaticCollection() {
+        let settings = Settings.shared
+
+        // Not isAutoLogAppEventsEnabled: it reads true until Meta's SDK has started, which it
+        // hasn't in tests.
+        for enabled in [false, true] {
+            LiveMetaSDK().setCollectionEnabled(enabled)
+
+            #expect(settings.isAdvertiserIDCollectionEnabled == enabled)
+            #expect(settings.isMetaDataCollectionEnabled == enabled)
+            #expect(settings.isAutoLogProductImprovementEnabled == enabled)
+        }
     }
 }
 

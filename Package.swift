@@ -10,9 +10,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/MkhytarMkhoian/herald-ios", from: "1.2.0"),
-        // 19.0.0's binaries don't match the checksums in its own Package.swift, so SwiftPM refuses
-        // it. Raise the bound once Meta fixes it.
-        .package(url: "https://github.com/facebook/facebook-ios-sdk", "18.1.1"..<"19.0.0"),
+        .package(url: "https://github.com/facebook/facebook-ios-sdk", from: "19.0.0"),
     ],
     targets: [
         .target(

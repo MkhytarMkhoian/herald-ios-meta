@@ -32,5 +32,7 @@ struct LiveMetaSDK: MetaSDK {
     func setCollectionEnabled(_ enabled: Bool) {
         Settings.shared.isAutoLogAppEventsEnabled = enabled
         Settings.shared.isAdvertiserIDCollectionEnabled = enabled
+        Settings.shared.isMetaDataCollectionEnabled = enabled
+        Settings.shared.isAutoLogProductImprovementEnabled = enabled
     }
 }
